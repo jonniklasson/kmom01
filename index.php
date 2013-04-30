@@ -6,6 +6,9 @@
 		//  The basic index.html is just divided in footer and header and content is included
 		// 	between depending on input.
 		
+			//hiding the warning about header in source.php, its not my code anyways
+
+		
 		include_once('src/start_session.php');
 			
 		$page = array('id'=>"",'title'=>"");
@@ -34,9 +37,15 @@
 		}
 
 		include('incl/head.php');
-		if ($page['id']=="3" or isset($_SESSION['checking_source'])): include('incl/source.php'); endif;
-		if ($page['id']=="1"): include('incl/me.html'); endif;
-		if ($page['id']=="2"): include('incl/redov.html'); endif;
+		if ($page['id']=="3" or isset($_SESSION['checking_source'])): 
+		$sourceNoEcho=true;
+		include("incl/source.php");
+		echo "<html><head><style type='text/css'>$sourceStyle</style></header>";
+		echo "<body>$sourceBody</body></html>"; endif;
+		if ($page['id']=="1"): 
+		include('incl/me.html'); endif;
+		if ($page['id']=="2"): 		
+		include('incl/redov.html'); endif;
 
 		include('incl/foot.php');
 ?>
